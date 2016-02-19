@@ -1,6 +1,6 @@
-# Image Identification for Medical
+# Medical Image Analysis
 
-A Project about Medical Image Identification for SRP Project of SCUT.  
+A Project about Medical Image Analysis for SRP Project of SCUT.  
 
 Teacher: JunYing Chen  
 Author : WhyWhy  
