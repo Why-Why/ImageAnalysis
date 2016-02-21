@@ -31,11 +31,14 @@ struct POS {
 
 // Color Structure, a 32-bit color or RGB color.
 union COLOR {
-	int color;
-	char color_8[4];
+	unsigned int color;
+	unsigned char color_8[4];			// 0 is R, 1 is G, 2 is B.
 
 	// Is this OK ?
-	COLOR & operator = (int x) { color=x; }
+	COLOR & operator = (unsigned int x) { color=x; }
+	// Get the Luminance of RGB color, or called Gray ?
+	unsigned int getYColor() const
+	{ return (299*color_8[0]+587*color_8[1]+114*color_8[2]+500)/1000; }
 };
 
 // Image Structure, include the size of the image, the color of each pixel about the image.
@@ -51,6 +54,8 @@ class IMAGE {
 		SIZE getSize() const { return size; }
 		const COLOR * getBuf() const { return buf; }
 		const COLOR * operator[] (int) const;
+
+		int setBuf(const SIZE &,const COLOR *);
 
 		// Function about JPEG.
 		int readJPG(const char *);

@@ -25,6 +25,22 @@ const COLOR* IMAGE::operator [] (int p) const {
 	return buf+size.width*p;
 }
 
+int IMAGE::setBuf(const SIZE & _size,const COLOR * _buf) {
+	size=_size;
+	if(buf) delete buf;
+	buf=new COLOR[size.width*size.height];
+	if(NULL==buf) return NEW_MEM_ERROR;
+
+	int cou=0;
+	for(int i=0;i<size.height;++i)
+		for(int j=0;j<size.width;++j) {
+			buf[cou]=_buf[cou];
+			++cou;
+		}
+
+	return NO_ERROR;
+}
+
 //////////////////////////////
 
 // Function about XPM.

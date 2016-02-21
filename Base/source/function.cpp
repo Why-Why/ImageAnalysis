@@ -107,3 +107,25 @@ int dist_Transform(const IMAGE &image,double *res,bool (*judge) (const COLOR),do
 
 	return NO_ERROR;
 }
+
+// Brightness histogram algorithm.
+// The Image, Save the ans(need more than 256 memory).
+int bright_Histogram(const IMAGE & image, int * res) {
+	const int bright_range=256;
+	const COLOR *buf=image.getBuf();
+	// Maybe no need.
+	if(NULL==buf) return NO_IMAGE_ERROR;
+
+	// Init, step 1.
+	for(int i=0;i<bright_range;++i) res[i]=0;
+
+	SIZE size=image.getSize();
+	int cou=0;
+	for(int i=0;i<size.height;++i)
+		for(int j=0;j<size.width;++j) {
+			++res[buf[cou].getYColor()];
+			++cou;
+		}
+
+	return NO_ERROR;
+}
