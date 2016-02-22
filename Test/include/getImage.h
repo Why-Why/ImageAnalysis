@@ -4,8 +4,11 @@
 #define GETIMAGE_H
 
 #include "../../Base/include/config.h"
+#include "../../Base/include/function.h"
 
-// Get additive and Gaussian noise.
-int get_addGaus_Noise()
+// Get additive and Gaussian gray noise.
+// Page 21 for book, algorithm 2.3.
+// Gray is in range [0,255].
+int get_addGaus_Noise(const SIZE &,double,int *);
 
 #endif

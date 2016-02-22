@@ -28,6 +28,6 @@ int bright_Histogram(const IMAGE &, int *);
 // Gaussian random numbers.
 // The Box-Muller transform algorithm (https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform)
 // Get two Gaussian random numbers.
-int rand_BoxMuller(double &,double &);
+int rand_BoxMuller(double,double,double &,double &);
 
 #endif

@@ -3,6 +3,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits>
 
 #include "../include/function.h"
 
@@ -126,6 +127,29 @@ int bright_Histogram(const IMAGE & image, int * res) {
 			++res[buf[cou].getYColor()];
 			++cou;
 		}
+
+	return NO_ERROR;
+}
+
+// Get Gaussian random numbers.
+// The mean and variance,the two answers.
+int rand_BoxMuller(double mu,double sigma,double &ans1,double &ans2) {
+	// for function log, without 0.
+	const double eps=1e-12;
+	const double twopi=atan2(1.0,1.0)*8.0;
+
+	double r1,r2;
+
+	do {
+		r1=rand()/(double)RAND_MAX;
+	}while(r1<=eps);
+	r2=rand()/(double)RAND_MAX;
+
+	ans1=sqrt(-2.0*log(r1))*cos(twopi*r2);
+	ans2=sqrt(-2.0*log(r1))*sin(twopi*r2);
+
+	ans1=ans1*sigma+mu;
+	ans2=ans2*sigma+mu;
 
 	return NO_ERROR;
 }

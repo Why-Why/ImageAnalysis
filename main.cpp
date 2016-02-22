@@ -3,20 +3,39 @@
 #include "./Base/include/config.h"
 #include "./Base/include/function.h"
 
+#include <cstdlib>
+#include <ctime>
+
 using namespace std;
 
-int num[10000];
+const int len=50;
 
-bool judge(const COLOR a) {
-	if(a.color) return 1;
-	return 0;
+int cou[len];
+
+int chu(double x) {
+	int ret=(int)(x+0.5)+len/2;
+	if(ret>=len) ret=0;
+	if(ret<0) ret=0;
+	return ret;
+}
+
+void show(int x) {
+	while(x--) putchar('*');
+	puts("");
 }
 
 int main() {
-	IMAGE a;
+	srand(time(0));
 
-	a.readJPG("a.jpg");
-	a[9][9].getYColor();
+	double a,b;
+
+	for(int i=0;i<10000;++i) {
+		rand_BoxMuller(0,100,a,b);
+		++cou[chu(a)];
+		++cou[chu(b)];
+	}
+
+	for(int i=1;i<len;++i) show(cou[i]);
 
 	return 0;
 }
